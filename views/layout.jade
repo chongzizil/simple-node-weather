@@ -3,10 +3,13 @@ html(ng-app="WeatherApp")
   head
     title= title
     link(rel='stylesheet', href='//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/weather-icons.min.css')
   body(layout="column")
     block navbar
     ng-view
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
     <!-- Angular Material Dependencies -->
     script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js")
     script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js")

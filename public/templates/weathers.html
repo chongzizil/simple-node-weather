@@ -22,8 +22,8 @@
 
       <md-grid-tile class="green" md-rowspan="1" md-colspan="1">
         <md-grid-tile-content>
+          <i ng-class="getWeatherClass(result.item.condition.code)"></i>
           <p>Temp: {{result.item.condition.temp}}</p>
-          <br/>
 
           <p>{{result.item.condition.text}}</p>
         </md-grid-tile-content>
@@ -35,6 +35,7 @@
       <md-grid-tile class="yellow" md-rowspan="1" md-colspan="1"
                     ng-repeat="forecast in result.item.forecast">
         <md-grid-tile-content>
+          <i ng-class="getWeatherClass({{forecast.code}})"></i>
           <p>High: {{forecast.high}}</p>
 
           <p>Low: {{forecast.low}}</p>

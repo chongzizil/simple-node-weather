@@ -7,6 +7,10 @@ a {
   color: #00B7FF;
 }
 
+.wi, .fa {
+  font-size: 64px;
+}
+
 md-toolbar h1 {
   font-size: 1.250em;
   font-weight: 400;
