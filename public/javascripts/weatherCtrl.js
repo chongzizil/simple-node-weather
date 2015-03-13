@@ -2,9 +2,18 @@
  * Created by youlongli on 3/13/15.
  */
 
-app.controller('WeatherCtrl', ['$scope', '$http', '$mdSidenav', function ($scope, $http, $mdSidenav) {
+app.controller('WeatherCtrl', ['$scope', '$http', '$mdSidenav', '$mdToast', function ($scope, $http, $mdSidenav, $mdToast) {
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
+  };
+
+  var toast = function() {
+    $mdToast.show({
+      controller: 'ToastCtrl',
+      templateUrl: '../templates/input-error-toast.html',
+      hideDelay: 6000,
+      position: "right top"
+    });
   };
 
   $scope.getWeather = function () {
@@ -13,7 +22,11 @@ app.controller('WeatherCtrl', ['$scope', '$http', '$mdSidenav', function ($scope
           $scope.result = data;
         }).
         error(function (data, status, headers, config) {
-          console.error("Something is wrong...");
+          toast();
         });
   }
-}]);
+}]).controller('ToastCtrl', function($scope, $mdToast) {
+  $scope.closeToast = function() {
+    $mdToast.hide();
+  };
+});

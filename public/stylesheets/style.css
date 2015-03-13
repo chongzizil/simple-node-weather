@@ -12,3 +12,15 @@ md-toolbar h1 {
   font-weight: 400;
   margin: auto;
 }
+
+md-grid-tile.green {
+  background: #b9f6ca;
+}
+
+md-grid-tile.yellow {
+  background: #ffff8d;
+}
+
+md-grid-tile {
+  transition: all 400ms ease-out 50ms;
+}

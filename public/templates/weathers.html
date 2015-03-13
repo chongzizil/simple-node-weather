@@ -1,10 +1,11 @@
-<section layout="column" layout-align="center center">
-  <md-content layout="row" class="md-padding">
+<section layout="column">
+  <md-content layout="column" class="md-padding">
     <md-input-container>
       <label>City</label>
       <input ng-model="city" placeholder="City">
     </md-input-container>
-    <md-button ng-click="getWeather()">Get Weather Info</md-button>
+    <md-button class="md-raised" ng-click="getWeather()">Get Weather Info
+    </md-button>
   </md-content>
 
   <md-content layout="column" ng-show="result">
@@ -14,33 +15,36 @@
       </h2>
     </md-toolbar>
 
-    <md-list layout="row">
-      <md-item>
-        <md-item-content>
-          <div class="md-tile-left">
-            <h2>Now</h2>
-          </div>
-          <div class="md-tile-content">
-            <p>Temp: {{result.item.condition.temp}}</p>
-            <br/>
-            <p>{{result.item.condition.text}}</p>
-          </div>
-        </md-item-content>
-      </md-item>
-      <md-item ng-repeat="forecast in result.item.forecast">
-        <md-item-content>
-          <div class="md-tile-left">
-            <h2>{{forecast.day}}</h2>
-          </div>
-          <div class="md-tile-content">
-            <p>High: {{forecast.high}}</p>
+    <md-grid-list
+        md-cols-sm="1" md-cols-md="3" md-cols-gt-md="6"
+        md-row-height-gt-md="1:1" md-row-height="1:1"
+        md-gutter="12x" md-gutter-gt-sm="8px">
 
-            <p>Low: {{forecast.low}}</p>
+      <md-grid-tile class="green" md-rowspan="1" md-colspan="1">
+        <md-grid-tile-content>
+          <p>Temp: {{result.item.condition.temp}}</p>
+          <br/>
 
-            <p>{{forecast.text}}</p>
-          </div>
-        </md-item-content>
-      </md-item>
-    </md-list>
+          <p>{{result.item.condition.text}}</p>
+        </md-grid-tile-content>
+        <md-grid-tile-footer>
+          <h2>Now</h2>
+        </md-grid-tile-footer>
+      </md-grid-tile>
+
+      <md-grid-tile class="yellow" md-rowspan="1" md-colspan="1"
+                    ng-repeat="forecast in result.item.forecast">
+        <md-grid-tile-content>
+          <p>High: {{forecast.high}}</p>
+
+          <p>Low: {{forecast.low}}</p>
+
+          <p>{{forecast.text}}</p>
+        </md-grid-tile-content>
+        <md-grid-tile-footer>
+          <h2>{{forecast.day}}</h2>
+        </md-grid-tile-footer>
+      </md-grid-tile>
+    </md-grid-list>
   </md-content>
 </section>

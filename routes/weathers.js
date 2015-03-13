@@ -8,10 +8,12 @@ router.get('/', function(req, res, next) {
   var query = new YQL('select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + city + '")');
 
   query.exec(function(err, data) {
-    var location = data.query.results.channel.location;
-    var condition = data.query.results.channel.item.condition;
-
-    res.json(data.query.results.channel);
+    console.log(data);
+    if (data.query.results !== null) {
+      res.json(data.query.results.channel);
+    } else {
+      res.status(400).send('Bad Request');
+    }
   });
 });
 
