@@ -1,40 +1,46 @@
 <section layout="column" layout-align="center center">
-  <md-content class="md-padding">
-    <md-input-container flex>
+  <md-content layout="row" class="md-padding">
+    <md-input-container>
       <label>City</label>
       <input ng-model="city" placeholder="City">
     </md-input-container>
     <md-button ng-click="getWeather()">Get Weather Info</md-button>
   </md-content>
 
-  <md-content ng-show="result">
+  <md-content layout="column" ng-show="result">
     <md-toolbar layout="row">
       <h2 class="md-toolbar-tools">
         <span>{{result.location.city}}, {{result.location.country}}</span>
       </h2>
     </md-toolbar>
 
-    <md-content layout="column">
-      <md-card layout="row" flex>
-        <md-card-content>
-          <h2>Current</h2>
+    <md-list layout="row">
+      <md-item>
+        <md-item-content>
+          <div class="md-tile-left">
+            <h2>Now</h2>
+          </div>
+          <div class="md-tile-content">
+            <p>Temp: {{result.item.condition.temp}}</p>
+            <br/>
+            <p>{{result.item.condition.text}}</p>
+          </div>
+        </md-item-content>
+      </md-item>
+      <md-item ng-repeat="forecast in result.item.forecast">
+        <md-item-content>
+          <div class="md-tile-left">
+            <h2>{{forecast.day}}</h2>
+          </div>
+          <div class="md-tile-content">
+            <p>High: {{forecast.high}}</p>
 
-          <p>Temp: {{result.item.condition.temp}}</p>
+            <p>Low: {{forecast.low}}</p>
 
-          <p>{{result.item.condition.text}}</p>
-        </md-card-content>
-      </md-card>
-      <md-card ng-repeat="forecast in result.item.forecast" flex>
-        <md-card-content>
-          <h2>{{forecast.day}}</h2>
-
-          <p>High: {{forecast.high}}</p>
-
-          <p>Low: {{forecast.low}}</p>
-
-          <p>{{forecast.text}}</p>
-        </md-card-content>
-      </md-card>
-    </md-content>
+            <p>{{forecast.text}}</p>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
   </md-content>
 </section>
